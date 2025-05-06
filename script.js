@@ -12,12 +12,12 @@ let messageIndex = 0;
 
 // Create an object to hold the codes and their respective actions (links or redirects)
 const accessActions = {
-    "SPOTIFY": { type: 'link', value: "https://open.spotify.com/artist/7jQfqwxrxEsaPU2C9BiO9X?si=aJAuUgdRSUqD3lAkzS9z1g" },
-    "INSTAGRAM": { type: 'link', value: "https://www.instagram.com/darinkirksauvey/" },
-    "TIKTOK": { type: 'link', value: "https://www.tiktok.com/@darinkirksauvey" },
-    "TWITCH": { type: 'link', value: "https://www.twitch.tv/darinkirksauvey" },
-    "GRANTED": { type: 'link', value: "https://soundcloud.com/darinkirksauvey/asitiwfse_041725" },
-    "TRASH": { type: 'redirect', value: "asitiwfse.html" } // Added TRASH code with redirect type and the HTML page
+    "/SPOTIFY": { type: 'link', value: "https://open.spotify.com/artist/7jQfqwxrxEsaPU2C9BiO9X?si=aJAuUgdRSUqD3lAkzS9z1g" },
+    "/INSTAGRAM": { type: 'link', value: "https://www.instagram.com/darinkirksauvey/" },
+    "/TIKTOK": { type: 'link', value: "https://www.tiktok.com/@darinkirksauvey" },
+    "/TWITCH": { type: 'link', value: "https://www.twitch.tv/darinkirksauvey" },
+    "/SOUNDCLOUD": { type: 'link', value: "https://soundcloud.com/darinkirksauvey/asitiwfse_041725" },
+    "/TRASH": { type: 'redirect', value: "asitiwfse.html" } // Added TRASH code with redirect type and the HTML page
 };
 
 function typeMessage(message, callback) {
