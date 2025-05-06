@@ -1,0 +1,48 @@
+body {
+    margin: 0;
+    background-color: black;
+    color: rgb(0, 255, 0);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 2vw; /* Use viewport width */
+}
+
+#terminal {
+    padding: 5%;
+    max-width: 600px; /* Set max width for larger screens */
+    width: 90%; /* Use 90% of the container width */
+    margin: auto; /* Center the terminal */
+}
+
+#output {
+    white-space: pre;
+    overflow-wrap: break-word;
+}
+
+#input {
+    background: black;
+    color: rgb(0, 255, 0);
+    border: none;
+    outline: none;
+    caret-color: rgb(0, 255, 0);
+    font-family: 'Courier New', Courier, monospace;
+    font-size: inherit; /* Inherit font size */
+    width: 100%;
+    margin-top: 10px;
+}
+
+/* Media Queries for different sizes */
+@media (max-width: 768px) {
+    body {
+        font-size: 3vw; /* Larger font size on smaller screens */
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        font-size: 4vw; /* Even larger font size on very small screens */
+    }
+
+    #terminal {
+        padding: 10%; /* Increase padding for smaller screens */
+    }
+}
