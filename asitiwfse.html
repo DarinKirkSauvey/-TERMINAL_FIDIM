@@ -13,6 +13,52 @@
             min-height: 100vh;
             margin: 0;
         }
+
+        /* Styling the audio controls */
+        audio {
+            width: 80%; /* Increased width */
+            height: 80px; /* Increased height */
+            filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(80deg) brightness(100%) contrast(100%); /* Turns elements lime green */
+            /* This filter is a bit of a hack to change the color of the default controls.
+               It might not work perfectly on all browsers and can sometimes affect the appearance
+               of the waveform/progress bar in unexpected ways. */
+        }
+
+        /* Attempting to hide the background and waveform bubble - limited control over default controls */
+        /* These selectors have limited effectiveness on the default browser audio controls */
+        audio::-webkit-media-controls-panel {
+            background-color: transparent !important;
+        }
+
+        audio::-webkit-media-controls-play-button,
+        audio::-webkit-media-controls-current-time-display,
+        audio::-webkit-media-controls-time-remaining-display,
+        audio::-webkit-media-controls-mute-button,
+        audio::-webkit-media-controls-volume-slider,
+        audio::-webkit-media-controls-seek-back-button,
+        audio::-webkit-media-controls-seek-forward-button,
+        audio::-webkit-media-controls-fullscreen-button {
+            color: limegreen !important; /* Attempting to make controls lime green */
+        }
+
+        /* More specific selectors for potential customization, but browser support varies */
+        audio::-webkit-media-controls-enclosure {
+            background-color: transparent !important;
+        }
+
+        audio::-webkit-media-controls-timeline {
+             /* Styling the timeline/waveform is very difficult with default controls */
+             /* We can try to change the background, but the waveform itself is often part of a shadow DOM */
+             background-color: transparent !important;
+        }
+
+        /* Trying to remove any potential white elements */
+        audio * {
+            color: limegreen !important;
+            background-color: transparent !important;
+            border-color: transparent !important;
+        }
+
     </style>
 </head>
 <body>
