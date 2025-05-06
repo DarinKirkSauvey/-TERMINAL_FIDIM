@@ -10,14 +10,14 @@ const input = document.getElementById('input');
 
 let messageIndex = 0;
 
-// Create an object to hold the codes and their respective links
-const accessCodes = {
-    "SPOTIFY": "https://open.spotify.com/artist/7jQfqwxrxEsaPU2C9BiO9X?si=aJAuUgdRSUqD3lAkjS9z1g",
-    "INSTAGRAM": "https://www.instagram.com/darinkirksauvey/",
-    "TIKTOK": "https://www.tiktok.com/@darinkirksauvey",
-    "TWITCH": "https://www.twitch.tv/darinkirksauvey",
-    "GRANTED": "https://soundcloud.com/darinkirksauvey/asitiwfse_041725"
-    
+// Create an object to hold the codes and their respective actions (links or redirects)
+const accessActions = {
+    "SPOTIFY": { type: 'link', value: "https://open.spotify.com/artist/7jQfqwxrxEsaPU2C9BiO9X?si=aJAuUgdRSUqD3lAkzS9z1g" },
+    "INSTAGRAM": { type: 'link', value: "https://www.instagram.com/darinkirksauvey/" },
+    "TIKTOK": { type: 'link', value: "https://www.tiktok.com/@darinkirksauvey" },
+    "TWITCH": { type: 'link', value: "https://www.twitch.tv/darinkirksauvey" },
+    "GRANTED": { type: 'link', value: "https://soundcloud.com/darinkirksauvey/asitiwfse_041725" },
+    "TRASH": { type: 'redirect', value: "asitiwfse.html" } // Added TRASH code with redirect type and the HTML page
 };
 
 function typeMessage(message, callback) {
@@ -51,18 +51,26 @@ function showInput() {
 input.addEventListener('keydown', (event) => {
     if (event.key === 'Enter') {
         const codeEntered = input.value.trim().toUpperCase(); // Normalize input: uppercase and remove spaces
-        if (accessCodes[codeEntered]) {
+        const action = accessActions[codeEntered]; // Get the action for the entered code
+
+        if (action) {
             output.textContent += '\n>> ACCESS GRANTED';
-            const link = accessCodes[codeEntered]; // Get the link for the correct access code
-            typeMessage(`\n>> `, () => {
-                const linkElement = document.createElement('a');
-                linkElement.href = link;
-                linkElement.textContent = 'ENTER'; // Change the text to 'link'
-                linkElement.style.color = 'lime';
-                linkElement.style.textDecoration = 'underline'; // Optional style change
-                linkElement.target = '_blank'; // Open in a new tab
-                output.appendChild(linkElement);
-            });
+
+            if (action.type === 'link') {
+                typeMessage(`\n>> `, () => {
+                    const linkElement = document.createElement('a');
+                    linkElement.href = action.value;
+                    linkElement.textContent = 'ENTER';
+                    linkElement.style.color = 'lime';
+                    linkElement.style.textDecoration = 'underline';
+                    linkElement.target = '_blank';
+                    output.appendChild(linkElement);
+                });
+            } else if (action.type === 'redirect') {
+                // Redirect to the specified HTML page
+                window.location.href = action.value;
+            }
+
         } else {
             output.textContent += '\n>> INCORRECT VALUE';
             output.textContent += '\n>> PLEASE ENTER ACCESS CODE';
@@ -72,4 +80,3 @@ input.addEventListener('keydown', (event) => {
 });
 
 typeMessages();
-
