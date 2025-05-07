@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>>>ASITIWFSE</title>
+    <style>
+        body {
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        /* Styling the video player */
+        video {
+            max-width: 90%; /* Make the video responsive and not exceed the viewport width */
+            max-height: 90vh; /* Make the video responsive and not exceed the viewport height */
+            object-fit: contain; /* Ensure the video fits within its bounds without distortion */
+            /* You can add filters here if you want to style the video element */
+        }
+
+    </style>
+</head>
+<body>
+
+    <video controls>
+        <source src="assets/videos/your_video_name.mp4" type="video/mp4">
+        <source src="assets/videos/your_video_name.webm" type="video/webm">
+        <!-- Add other source types for broader browser compatibility if needed -->
+        Your browser does not support the video tag.
+    </video>
+
+</body>
+</html>
