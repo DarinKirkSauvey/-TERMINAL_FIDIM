@@ -22,15 +22,15 @@ const accessActions = {
     "/TRASH": { type: 'redirect', value: "asitiwfse.html" }, // Assuming the main page is index.html
     "/TOUR": { type: 'showdates', value: [
         { text: ">> UPCOMING TOUR DATES:" },
-        { text: ">> 04/17/2025 - The Roxy - Los Angeles, CA", link: "https://example.com/tickets/roxy" },
-        { text: ">> 05/01/2025 - The Fillmore - San Francisco, CA", link: "https://example.com/tickets/fillmore" },
-        { text: ">> 06/10/2025 - House of Blues - Chicago, IL", link: "https://example.com/tickets/houseofblues" }
+        { text: ">> REDACTED", link: "https://example.com/tickets/roxy" },
+        { text: ">> REDACTED", link: "https://example.com/tickets/fillmore" },
+        { text: ">> REDACTED", link: "https://example.com/tickets/houseofblues" }
     ]},
     "/SHOWS": { type: 'showdates', value: [
         { text: ">> UPCOMING SHOW DATES:" },
-        { text: ">> 04/17/2025 - The Roxy - Los Angeles, CA", link: "https://example.com/tickets/roxy" },
-        { text: ">> 05/01/2025 - The Fillmore - San Francisco, CA", link: "https://example.com/tickets/fillmore" },
-        { text: ">> 06/10/2025 - House of Blues - Chicago, IL", link: "https://example.com/tickets/houseofblues" }
+        { text: ">> REDACTED", link: "https://example.com/tickets/roxy" },
+        { text: ">> REDACTED", link: "https://example.com/tickets/fillmore" },
+        { text: ">> REDACTED", link: "https://example.com/tickets/houseofblues" }
     ]},
     "/INFO": { type: 'info', value: [ // Added the /INFO code with a new type and an array of info messages
         { text: ">> AVAILABLE COMMANDS:" },
@@ -43,9 +43,9 @@ const accessActions = {
     ]},
     "/MORE": { type: 'showdates', value: [ // Added /MORE with more show dates
         { text: ">> ADDITIONAL DATES:" },
-        { text: ">> 07/20/2025 - The Observatory - Santa Ana, CA", link: "https://example.com/tickets/observatory" },
-        { text: ">> 08/05/2025 - Webster Hall - New York, NY", link: "https://example.com/tickets/websterhall" },
-        { text: ">> 09/15/2025 - Fox Theater - Oakland, CA", link: "https://example.com/tickets/foxtheater" }
+        { text: ">> REDACTED", link: "https://example.com/tickets/observatory" },
+        { text: ">> REDACTED", link: "https://example.com/tickets/websterhall" },
+        { text: ">> REDACTED", link: "https://example.com/tickets/foxtheater" }
     ]}
 };
 
