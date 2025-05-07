@@ -3,7 +3,8 @@ const messages = [
     ">> PLEASE WAIT...",
     ">> SIGNAL CONNECTED",
     ">> ACCESS CODE REQUIRED",
-    ">> PLEASE ENTER ACCESS CODE OR TYPE /INFO"
+    ">> PLEASE ENTER ACCESS CODE",
+    ">> OR TYPE /INFO FOR MORE",
 ];
 
 const output = document.getElementById('output');
@@ -14,12 +15,12 @@ let lastCommandWasShowdates = false; // Flag to track if the last successful com
 
 // Create an object to hold the codes and their respective actions (links or redirects)
 const accessActions = {
-    "/SPOTIFY": { type: 'link', value: "https://open.spotify.com/artist/7jQfqwxrxEsaPU2C9BiO9X?si=aJAuUgdRSUqD3lAkzS9z1g" },
-    "/INSTAGRAM": { type: 'link', value: "https://www.instagram.com/darinkirksauvey/" },
-    "/TIKTOK": { type: 'link', value: "https://www.tiktok.com/@darinkirksauvey" },
-    "/TWITCH": { type: 'link', value: "https://www.twitch.tv/darinkirksauvey" },
-    "/SOUNDCLOUD": { type: 'link', value: "https://soundcloud.com/darinkirksauvey/asitiwfse_041725" },
-    "/TRASH": { type: 'redirect', value: "asitiwfse.html" }, // Assuming the main page is index.html
+    "/SPOTIFY": { type: 'newtab', value: "https://open.spotify.com/artist/7jQfqwxrxEsaPU2C9BiO9X?si=aJAuUgdRSUqD3lAkzS9z1g" },
+    "/INSTAGRAM": { type: 'newtab', value: "https://www.instagram.com/darinkirksauvey/" },
+    "/TIKTOK": { type: 'newtab', value: "https://www.tiktok.com/@darinkirksauvey" },
+    "/TWITCH": { type: 'newtab', value: "https://www.twitch.tv/darinkirksauvey" },
+    "/SOUNDCLOUD": { type: 'newtab', value: "https://soundcloud.com/darinkirksauvey/asitiwfse_041725" },
+    "/TRASH": { type: 'redirect', value: "asitiwfse.html" }, // Assuming the main page is index.html, still redirects in the same tab
     "/TOUR": { type: 'showdates', value: [
         { text: ">> UPCOMING TOUR DATES:" },
         { text: ">> REDACTED", link: "https://example.com/tickets/roxy" },
@@ -53,6 +54,7 @@ const morePrompt = ">> TYPE /MORE TO SEE MORE DATES"; // Message to prompt for m
 const incorrectValueMessage = ">> INCORRECT VALUE";
 const enterCodePrompt = ">> PLEASE ENTER ACCESS CODE OR TYPE /INFO";
 const moreNotAvailableMessage = ">> NOTHING MORE TO SHOW AT THIS TIME"; // New message for invalid /MORE usage
+const accessGrantedMessage = ">> ACCESS GRANTED"; // Moved to a constant
 
 const typingSpeed = 75; // Reduced from 100ms to 75ms for slightly faster typing
 
@@ -63,7 +65,9 @@ function typeMessage(message, callback) {
             output.textContent += message[i++];
         } else {
             clearInterval(interval);
-            callback();
+            if (callback) { // Check if callback exists before calling
+                 callback();
+            }
         }
     }, typingSpeed); // Use the typingSpeed variable
 }
@@ -86,7 +90,7 @@ function typeMessages(messagesToType, callbackAfterAll) {
                     linkElement.textContent = ' [TICKETS]'; // Added text for the link
                     linkElement.style.color = 'cyan'; // Different color for ticket link
                     linkElement.style.textDecoration = 'underline';
-                    linkElement.target = '_blank';
+                    linkElement.target = '_blank'; // This is already set for the ticket links
                     output.appendChild(linkElement);
                 }
 
@@ -113,15 +117,19 @@ input.addEventListener('keydown', (event) => {
         const codeEntered = input.value.trim().toUpperCase();
         const action = accessActions[codeEntered];
 
-        // Reset the flag unless the current command is showdates
+        // Reset the flag unless the current command is showdates type
         if (action && action.type !== 'showdates') {
             lastCommandWasShowdates = false;
         }
 
+        // Add a newline before displaying the command entered by the user
+        output.textContent += `>> ${input.value.trim()}\n`;
+
+
         if (action) {
              // Special handling for /MORE if the last command wasn't showdates
             if (codeEntered === "/MORE" && !lastCommandWasShowdates) {
-                 typeMessage(`\n${moreNotAvailableMessage}`, () => {
+                 typeMessage(`${moreNotAvailableMessage}`, () => { // Removed leading newline
                      output.textContent += '\n';
                      typeMessage(enterCodePrompt, () => {
                          output.textContent += '\n';
@@ -132,29 +140,31 @@ input.addEventListener('keydown', (event) => {
                  return; // Stop further processing for invalid /MORE
             }
 
-            // Add a newline before displaying output for successful actions (excluding the handled invalid /MORE)
-            output.textContent += '\n';
-
-
-            if (action.type === 'link') {
-                typeMessage(`>> ACCESS GRANTED >> `, () => { // Combined messages for link action
-                    const linkElement = document.createElement('a');
-                    linkElement.href = action.value;
-                    linkElement.textContent = 'ENTER';
-                    linkElement.style.color = 'lime';
-                    linkElement.style.textDecoration = 'underline';
-                    linkElement.target = '_blank';
-                    output.appendChild(linkElement);
+            // Handle new tab actions
+            if (action.type === 'newtab') {
+                typeMessage(accessGrantedMessage, () => { // Type "ACCESS GRANTED"
+                     // Introduce a slight delay before opening the new tab for effect
+                    setTimeout(() => {
+                         window.open(action.value, '_blank'); // Open in a new tab
+                         showInput(); // Show input again after opening new tab
+                    }, 500); // 500ms delay
                 });
-            } else if (action.type === 'redirect') {
-                output.textContent += '>> ACCESS GRANTED'; // Display access granted immediately for redirect
-                window.location.href = action.value;
+
+            }
+            // Handle redirect actions (still in the same tab)
+            else if (action.type === 'redirect') {
+                typeMessage(accessGrantedMessage, () => { // Type "ACCESS GRANTED"
+                     // Introduce a slight delay before redirecting for effect
+                    setTimeout(() => {
+                         window.location.href = action.value; // Perform the redirect
+                    }, 500); // 500ms delay
+                });
+
             } else if (action.type === 'showdates') {
                 // Set the flag if the command was showdates
                 lastCommandWasShowdates = true;
 
-                // Do not clear output for showdates
-                typeMessage(`>> ACCESS GRANTED\n`, () => { // Type access granted and then the show dates
+                typeMessage(`${accessGrantedMessage}\n`, () => { // Type access granted and then the show dates (removed leading newline)
                     typeMessages(action.value, () => { // After typing show dates...
                          // Only show the more prompt if the command was /TOUR or /SHOWS
                         if (codeEntered === "/TOUR" || codeEntered === "/SHOWS") {
@@ -170,15 +180,14 @@ input.addEventListener('keydown', (event) => {
                     });
                 });
             } else if (action.type === 'info') {
-                // Do not clear output for info
-                typeMessage(`>> ACCESS GRANTED\n`, () => { // Type access granted and then the info
+                typeMessage(`${accessGrantedMessage}\n`, () => { // Type access granted and then the info (removed leading newline)
                     typeMessages(action.value, showInput); // Type out the info messages and then show the input again
                 });
             }
 
         } else {
             // Handle incorrect value with typing effect
-            typeMessage(`\n${incorrectValueMessage}`, () => {
+            typeMessage(`${incorrectValueMessage}`, () => { // Removed leading newline
                 output.textContent += '\n'; // Add a newline after incorrect value message
                 typeMessage(enterCodePrompt, () => {
                     output.textContent += '\n'; // Add a newline after the prompt
