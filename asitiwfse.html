@@ -12,12 +12,15 @@
             align-items: center;
             min-height: 100vh;
             margin: 0;
+            padding: 20px; /* Add some padding for smaller screens */
+            box-sizing: border-box; /* Include padding in the element's total width and height */
         }
 
         /* Styling the audio controls */
         audio {
-            width: 60%; /* Increased width */
-            height: 80px; /* Increased height */
+            width: 90%; /* Make it wider on smaller screens */
+            max-width: 600px; /* Set a maximum width to prevent it from getting too large on desktops */
+            height: 80px; /* Keep the height consistent or adjust as needed */
             filter: invert(50%) sepia(100%) saturate(2000%) hue-rotate(80deg) brightness(100%) contrast(100%); /* Turns elements lime green */
             /* This filter is a bit of a hack to change the color of the default controls.
                It might not work perfectly on all browsers and can sometimes affect the appearance
@@ -57,6 +60,13 @@
             color: limegreen !important;
             background-color: transparent !important;
             border-color: transparent !important;
+        }
+
+        /* Media query for larger screens (desktop) */
+        @media (min-width: 768px) {
+            audio {
+                width: 60%; /* Revert to original width for larger screens */
+            }
         }
 
     </style>
