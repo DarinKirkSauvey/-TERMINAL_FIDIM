@@ -19,7 +19,7 @@ const accessActions = {
     "/TIKTOK": { type: 'link', value: "https://www.tiktok.com/@darinkirksauvey" },
     "/TWITCH": { type: 'link', value: "https://www.twitch.tv/darinkirksauvey" },
     "/SOUNDCLOUD": { type: 'link', value: "https://soundcloud.com/darinkirksauvey/asitiwfse_041725" },
-    "/TRASH": { type: 'redirect', value: "index.html" }, // Assuming the main page is index.html
+    "/TRASH": { type: 'redirect', value: "asitiwfse.html" }, // Assuming the main page is index.html
     "/TOUR": { type: 'showdates', value: [
         { text: ">> UPCOMING TOUR DATES:" },
         { text: ">> 04/17/2025 - The Roxy - Los Angeles, CA", link: "https://example.com/tickets/roxy" },
