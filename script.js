@@ -40,7 +40,6 @@ const accessActions = {
         { text: ">> /TWITCH" },
         { text: ">> /SOUNDCLOUD" },
         { text: ">> /SHOWS" },
-        { text: ">> /MORE - SEE ADDITIONAL DATES (After /SHOWS or /TOUR)" } // Updated info message
     ]},
     "/MORE": { type: 'showdates', value: [ // Added /MORE with more show dates
         { text: ">> ADDITIONAL DATES:" },
