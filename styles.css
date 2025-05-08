@@ -1,8 +1,15 @@
+@font-face {
+    font-family: 'VCR OSD MONO';
+    src: url('assets/fonts/VCR_OSD_MONO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
     margin: 0;
     background-color: black;
     color: rgb(0, 255, 0);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'VCR OSD MONO', monospace; /* Primary font */
     font-size: 2vw; /* Use viewport width */
 }
 
@@ -24,7 +31,7 @@ body {
     border: none;
     outline: none;
     caret-color: rgb(0, 255, 0);
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'VCR OSD MONO', monospace; /* match the main font */
     font-size: inherit; /* Inherit font size */
     width: 100%;
     margin-top: 10px;
