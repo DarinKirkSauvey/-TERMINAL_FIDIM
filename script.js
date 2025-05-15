@@ -33,8 +33,7 @@ const accessActions = {
       { text: ">> /INSTAGRAM" },
       { text: ">> /TIKTOK" },
       { text: ">> /TWITCH" },
-      { text: ">> /SOUNDCLOUD" },
-      
+      { text: ">> /SOUNDCLOUD" },      
   ]},
   "/MORE": { type: 'showdates', value: [
       { text: ">> ADDITIONAL DATES:" },
@@ -123,12 +122,21 @@ input.addEventListener('keydown', (e) => {
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ fields: { email: email } })
         }).then(() => {
-          typeMessage(">> THANK YOU! YOUR EMAIL HAS BEEN ADDED.\n");
+          // Show thank you message on two lines
+          typeMessage(">> ACCESS GRANTED\n", () => {
+            typeMessage(">> YOUR EMAIL HAS BEEN ADDED.\n");
+          });
         }).catch(() => {
-          typeMessage(">> ERROR. PLEASE TRY AGAIN.\n");
+          // Show error message on two lines
+          typeMessage(">> ERROR\n", () => {
+            typeMessage(">> ENTER ACCESS CODE\n");
+          });
         });
       } else {
-        typeMessage(">> INVALID. PLEASE TRY AGAIN.\n");
+        // Invalid email, show on two lines
+        typeMessage(">> INVALID\n", () => {
+          typeMessage(">> ENTER ACCESS CODE\n");
+        });
       }
       awaitingEmail = false;
       input.value = '';
