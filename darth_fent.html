@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>/DARTH_FENT</title>
+<style>
+@font-face {
+    font-family: 'VCR OSD MONO';
+    src: url('assets/fonts/VCR_OSD_MONO.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+body {
+    background-color: black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.video-container {
+    position: relative;
+    width: 90%;
+    max-width: 600px;
+}
+#myVideo {
+    width: 100%;
+    background-color: black;
+    border-radius: 8px;
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+#myVideo.show {
+    opacity: 1;
+}
+#overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    background: transparent;
+    z-index: 10;
+}
+#centerPlayBtn {
+    width: 80px;
+    height: 80px;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#centerPlayBtn svg {
+    fill: rgb(0, 255, 0);
+    width: 60px;
+    height: 60px;
+}
+</style>
+</head>
+<body>
+
+<div class="video-container" style="position: relative;">
+    <video id="myVideo" src="assets/video/darth_fent.mp4" type="video/mp4"></video>
+    <div id="overlay">
+        <button id="centerPlayBtn" aria-label="Play/Pause">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <polygon points="8,5 8,19 19,12" />
+            </svg>
+        </button>
+    </div>
+</div>
+
+<script>
+const video = document.getElementById('myVideo');
+const btn = document.getElementById('centerPlayBtn');
+const overlay = document.getElementById('overlay');
+
+// When button clicked, show the video and play
+btn.addEventListener('click', () => {
+  if (!video.classList.contains('show')) {
+    // Show video and play
+    video.classList.add('show');
+    video.play();
+  } else {
+    // Toggle play/pause
+    if (video.paused || video.ended) {
+      video.play();
+    } else {
+      video.pause();
+    }
+  }
+});
+
+// Clicking on video toggles pause/play
+video.addEventListener('click', () => {
+  if (video.paused || video.ended) {
+    video.play();
+  } else {
+    video.pause();
+  }
+});
+
+// Show/hide overlay based on play state
+video.addEventListener('play', () => {
+  overlay.style.display = 'none';
+});
+video.addEventListener('pause', () => {
+  overlay.style.display = 'flex';
+});
+video.addEventListener('ended', () => {
+  overlay.style.display = 'flex';
+});
+</script>
+
+</body>
+</html>

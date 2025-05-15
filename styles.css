@@ -13,6 +13,7 @@ body {
     font-size: 2vw;
 }
 
+/* Terminal container styling */
 #terminal {
     padding: 5%;
     max-width: 600px;
@@ -20,11 +21,13 @@ body {
     margin: auto;
 }
 
+/* Output display styling */
 #output {
     white-space: pre;
     overflow-wrap: break-word;
 }
 
+/* Input field styling */
 #input {
     background: black;
     color: rgb(0, 255, 0);
@@ -37,7 +40,7 @@ body {
     margin-top: 10px;
 }
 
-/* Responsive adjustments */
+/* Responsive font size for smaller screens */
 @media (max-width: 768px) {
     body { font-size: 3vw; }
 }
