@@ -27,12 +27,14 @@ const accessActions = {
   ]},
   "/INFO": { type: 'info', value: [
       { text: ">> AVAILABLE COMMANDS:" },
+      { text: ">> /SIGNUP"},
+      { text: ">> /SHOWS" },           
       { text: ">> /SPOTIFY" },
       { text: ">> /INSTAGRAM" },
       { text: ">> /TIKTOK" },
       { text: ">> /TWITCH" },
       { text: ">> /SOUNDCLOUD" },
-      { text: ">> /SHOWS" },
+      
   ]},
   "/MORE": { type: 'showdates', value: [
       { text: ">> ADDITIONAL DATES:" },
