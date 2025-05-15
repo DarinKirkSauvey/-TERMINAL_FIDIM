@@ -9,15 +9,15 @@ body {
     margin: 0;
     background-color: black;
     color: rgb(0, 255, 0);
-    font-family: 'VCR OSD MONO', monospace; /* Primary font */
-    font-size: 2vw; /* Use viewport width */
+    font-family: 'VCR OSD MONO', monospace;
+    font-size: 2vw;
 }
 
 #terminal {
     padding: 5%;
-    max-width: 600px; /* Set max width for larger screens */
-    width: 90%; /* Use 90% of the container width */
-    margin: auto; /* Center the terminal */
+    max-width: 600px;
+    width: 90%;
+    margin: auto;
 }
 
 #output {
@@ -31,25 +31,17 @@ body {
     border: none;
     outline: none;
     caret-color: rgb(0, 255, 0);
-    font-family: 'VCR OSD MONO', monospace; /* match the main font */
-    font-size: inherit; /* Inherit font size */
+    font-family: 'VCR OSD MONO', monospace;
+    font-size: inherit;
     width: 100%;
     margin-top: 10px;
 }
 
-/* Media Queries for different sizes */
+/* Responsive adjustments */
 @media (max-width: 768px) {
-    body {
-        font-size: 3vw; /* Larger font size on smaller screens */
-    }
+    body { font-size: 3vw; }
 }
-
 @media (max-width: 480px) {
-    body {
-        font-size: 4vw; /* Even larger font size on very small screens */
-    }
-
-    #terminal {
-        padding: 10%; /* Increase padding for smaller screens */
-    }
+    body { font-size: 4vw; }
+    #terminal { padding: 10%; }
 }
