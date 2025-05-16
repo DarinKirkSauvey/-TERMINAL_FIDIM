@@ -60,7 +60,8 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: ">> REDACTED", link: "https://example.com/tickets/foxtheater" }
     ]},
     "/SIGNUP": { type: 'signup' },
-    "/DARTH_FENT": { type: 'redirect', value: 'darth_fent.html' } // Your new command
+    "/DART_FENT": { type: 'redirect', value: 'darth_fent.html' },
+    "/KLINGHOFFER": { type: 'redirect', value: 'klinghoffer.html' } // added command
   };
 
   const startMessages = [
