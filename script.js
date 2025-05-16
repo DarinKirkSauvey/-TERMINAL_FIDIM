@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', () => {
         { text: ">> REDACTED", link: "https://example.com/tickets/foxtheater" }
     ]},
     "/SIGNUP": { type: 'signup' },
-    "/DART_FENT": { type: 'redirect', value: 'darth_fent.html' },
+    "/DARTH_FENT": { type: 'redirect', value: 'darth_fent.html' },
     "/KLINGHOFFER": { type: 'redirect', value: 'klinghoffer.html' } // added command
   };
 
