@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
   let awaitingEmail = false;
   let isSignupProcess = false;
 
+  // Define site version
+  const siteVersion = '1.14.2'; // Set your current site version here
+
   // Commands and initial messages
   const accessActions = {
     "/SPOTIFY": { type: 'newtab', value: "https://open.spotify.com/artist/7jQfqwxrxEsaPU2C9BiO9X?si=aJAuUgdRSUqD3lAkzS9z1g" },
@@ -62,7 +65,10 @@ document.addEventListener('DOMContentLoaded', () => {
     ]},
     "/SIGNUP": { type: 'signup' },
     "/DARTH_FENT": { type: 'redirect', value: 'darth_fent.html' },
-    "/KLINGHOFFER": { type: 'redirect', value: 'klinghoffer.html' } // added command
+    "/KLINGHOFFER": { type: 'redirect', value: 'klinghoffer.html' },
+    "/GHANDI": { type: 'redirect', value: 'ghandi.html' },
+    // Add /VERSION command
+    "/VERSION": { type: 'version' }
   };
 
   const startMessages = [
@@ -218,6 +224,12 @@ document.addEventListener('DOMContentLoaded', () => {
         } else if (action.type === 'info') {
           typeMessage(">> " + "ACCESS GRANTED\n", () => {
             typeMessages(action.value, showInput);
+          });
+        } else if (action.type === 'version') {
+          // Handle /VERSION command
+          typeMessage(">> ACCESS GRANTED\n", () => {
+            // Type out the version
+            typeMessage(`>> SITE VERSION: ${siteVersion}\n`, showInput);
           });
         }
       } else {
