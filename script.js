@@ -67,7 +67,6 @@ document.addEventListener('DOMContentLoaded', () => {
     "/DARTH_FENT": { type: 'redirect', value: 'darth_fent.html' },
     "/KLINGHOFFER": { type: 'redirect', value: 'klinghoffer.html' },
     "/GHANDI": { type: 'redirect', value: 'ghandi.html' },
-    // Add /VERSION command
     "/VERSION": { type: 'version' }
   };
 
